@@ -1,0 +1,29 @@
+resources:
+
+
+# Docker Image for cancellation
+  - name: cancellation-img
+    type: image
+    integration: dockerhub
+    pointer:
+      sourceName: "jrobison151/cancellation"
+      isPull: false
+    seed:
+      versionName: latest
+
+# Docker Image Options for cancellation
+  - name: cancellation-img-opts
+    type: dockerOptions
+    version:
+      memory: 512
+      portMappings:
+        - 80:8080
+      publishAllPorts : true
+
+# add TEST env - AWS cluster
+  - name: env-test-ecs
+    type: cluster
+    integration: aws
+    pointer:
+      sourceName : "appointment-management"
+      region: "us-east-1"

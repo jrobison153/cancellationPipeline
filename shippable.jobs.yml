@@ -1,0 +1,19 @@
+jobs:
+
+
+# manifest gen for cancellation
+  - name: cancellation-man
+    type: manifest
+    steps:
+      - IN: cancellation-img
+      - IN: cancellation-img-opts
+      - TASK: managed
+
+# TEST deployment for cancellation to Amazon ECS
+  - name: cancellation-test-ecs
+    type: deploy
+    steps:
+      - IN: cancellation-man
+      - IN: env-test-ecs
+      - TASK: managed
+
